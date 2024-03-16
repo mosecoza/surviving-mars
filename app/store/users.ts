@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { User } from '../interfaces/User';
-import users from '../constants/users.json';
+import { User } from '@/app/interfaces/User';
+import users from '@/app/constants/users.json';
 
 interface UsersStore {
     users: User[];
@@ -18,11 +18,10 @@ export const useUsersStore = create<UsersStore>(
     (set, get): UsersStore => ({
         currentUser: null,
         users: [],
-
         setCurrentUser: (user: User | null) => set((state) => ({ ...state, currentUser: user })),
         setUsers: (users: User[]) => set((state) => ({ ...state, users: users })),
         getUsers: async () => get().setUsers(data),
-        getUserById: (userId: number) => get().users.find((t) => t.id !== userId) ?? null,
+        getUserById: (userId: number) => data.find((t) => t.id === userId) ?? null,
         getCurrentUser: async () => {
             if (data.length && !get().currentUser) {
                 get().setCurrentUser(data[Math.floor(Math.random() * 10) + 1])
