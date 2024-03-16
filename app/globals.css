@@ -31,3 +31,11 @@ body {
     text-wrap: balance;
   }
 }
+
+.mission-title {
+  @apply text-mars-300 text-3xl font-bold; 
+}
+
+.task-description {
+  @apply text-gray-700 text-base; 
+}
