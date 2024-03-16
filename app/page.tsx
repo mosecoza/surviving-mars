@@ -1,9 +1,9 @@
 "use client";
-import Header from "./components/Header";
-import { useUsersStore } from "./store/users";
+import Header from "@/app/components/Header";
+import { useUsersStore } from "@/app/store/users";
 import { useEffect } from "react";
-import { useTasksStore } from "./store/useTasks";
-import TaskCard from "./components/TaskCard";
+import { useTasksStore } from "@/app/store/useTasks";
+import TaskCard from "@/app/components/TaskCard";
 
 export default function Home() {
   const { getUsers, getCurrentUser } = useUsersStore();

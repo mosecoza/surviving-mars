@@ -1,6 +1,6 @@
 import { create, StateCreator } from 'zustand';
 import { createJSONStorage, persist, PersistOptions } from 'zustand/middleware';
-import { Task } from '../interfaces/Task';
+import { Task } from '@/app/interfaces/Task';
 
 interface TaskStore {
     tasks: Task[];
