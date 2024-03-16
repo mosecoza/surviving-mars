@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import AddTaskModal from "./modals/add-task-modal";
+import AddTaskModal from "@/app/components/modals/AddTaskModal";
+import useDisclosure from "@/app/hooks/useDisclosure";
 
 /*
 At the top of the page, there should be a coloured header bar containing a witty title
@@ -8,16 +9,16 @@ which maintains it's position as you scroll through the application.
 */
 
 const Header = () => {
-  const handleAddTaskForm = () => setOpen(true);
-  const [open, setOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <header className="flex justify-between items-center z-50 top-0 left-0 w-full p-4 sticky bg-slate-950 dark:bg-orange-300">
-      {open && <AddTaskModal open={open} onClose={setOpen} />}
+      {isOpen && <AddTaskModal open={isOpen} onClose={onClose} />}
       <h1 className="text-orange-300 dark:text-slate-950 font-bold text-xl">
         Surviving Mars: One Organized Task at a Time
       </h1>
       <button
-        onClick={handleAddTaskForm}
+        onClick={onOpen}
         className="p-2 rounded-md text-orange-50 flex dark:text-slate-800 hover:bg-orange-200"
         type="button"
       >
