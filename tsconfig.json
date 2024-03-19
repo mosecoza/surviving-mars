@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,11 +22,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     },
     "baseUrl": "./"
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -35,6 +43,8 @@
     "__tests__/useDisclosure.spec.js",
     "__tests__/useDisclosure.spec.js",
     "__tests__/useTaskes.spec.js",
-    "__tests__/AddTaskModal.spec.js"
+    "__tests__/AddTaskModal.spec.js",
+    "__tests__/zustand.js",
+    "__tests__/SidePanel.spec.js"
   ]
 }
