@@ -1,24 +1,22 @@
-import React from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import Image from 'next/image'; // Ensure Image is mocked for testing
-import MarsHeroSection from '../app/components/MarsHeroSection';
+import React from "react";
+import { render, fireEvent, waitFor, screen } from "@testing-library/react";
+import Image from "next/image"; // Ensure Image is mocked for testing
+import MarsHeroSection from "../app/components/MarsHeroSection";
 // import Enzyme, { mount } from 'enzyme'
 // import EnzymeAdapter from 'enzyme-adapter-react-16'
 
-
 // Enzyme.configure({adapter: new EnzymeAdapter()})
 
-jest.doMock('next/image', () => ({
+jest.doMock("next/image", () => ({
   Image: ({ src, alt }) => <img src={src} alt={alt} />,
 }));
 
-
-test('renders placeholder initially', () => {
+test("renders placeholder initially", () => {
   render(<MarsHeroSection />);
 
-  const heroSection = screen.getByTestId('hero-section');
-  expect(heroSection.className).toContain('border-2 border-dashed rounded-lg');
-  expect(heroSection.className).toContain('border-gray-300');
+  const heroSection = screen.getByTestId("hero-section");
+  expect(heroSection.className).toContain("border-2 border-dashed rounded-lg");
+  expect(heroSection.className).toContain("border-gray-300");
 });
 
 /*

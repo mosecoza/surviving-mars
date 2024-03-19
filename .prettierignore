@@ -4,7 +4,7 @@
 /node_modules
 
 # testing
-__tests__
+/coverage
 
 # next.js
 /.next/

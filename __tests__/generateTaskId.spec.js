@@ -1,9 +1,9 @@
-import { generateTaskId } from '../app/utils/generateTaskId';
+import { generateTaskId } from "../app/utils/generateTaskId";
 
-test('generateTaskId returns a string', () => {
+test("generateTaskId returns a string", () => {
   const taskId = generateTaskId();
 
-  expect(typeof taskId).toBe('string'); 
+  expect(typeof taskId).toBe("string");
 });
 
 /*
@@ -14,10 +14,10 @@ test('generated task ID has a specific length', () => {
 });
 */
 
-test('generated task ID contains alphanumeric characters', () => {
+test("generated task ID contains alphanumeric characters", () => {
   const taskId = generateTaskId();
 
-  const regex = /^[a-z0-9]+$/; 
+  const regex = /^[a-z0-9]+$/;
 
-  expect(regex.test(taskId)).toBe(true); 
+  expect(regex.test(taskId)).toBe(true);
 });
