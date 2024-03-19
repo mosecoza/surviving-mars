@@ -16,15 +16,18 @@ export const SidePanel = () => {
         <ul className="space-y-2">
           <li className="border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center flex-between p-2 text-bold font-medium text-gray-900 rounded-lg dark:text-white group">
-              <span data-testid="currentUser" className="ml-3">{currentUser?.name}</span>
+              <span data-testid="currentUser" className="ml-3">
+                {currentUser?.name}
+              </span>
             </div>
           </li>
           <li className="border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center flex-between p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white group">
-              <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                Tasks
-              </span>
-              <span data-testid="numberOfTasks" className="bg-orange-100 text-orange-800 text-xs font-lg me-2 px-2.5 py-0.5 rounded-full dark:bg-orange-900 dark:text-orange-300">
+              <span className="flex-1 ml-3 text-left whitespace-nowrap">Tasks</span>
+              <span
+                data-testid="numberOfTasks"
+                className="bg-orange-100 text-orange-800 text-xs font-lg me-2 px-2.5 py-0.5 rounded-full dark:bg-orange-900 dark:text-orange-300"
+              >
                 {tasks.length}
               </span>
             </div>

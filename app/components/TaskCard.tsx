@@ -12,22 +12,10 @@ interface Props {
 }
 
 const TaskCard = ({ task }: Props) => {
-  const {
-    isOpen: isOpenDeleteAlert,
-    onOpen: onOpenDeleteAlert,
-    onClose: onCloseDeleteAlert,
-  } = useDisclosure();
+  const { isOpen: isOpenDeleteAlert, onOpen: onOpenDeleteAlert, onClose: onCloseDeleteAlert } = useDisclosure();
 
-  const {
-    isOpen: isOpenUpdateModal,
-    onOpen: onOpenUpdateModal,
-    onClose: onCloseUpdateModal,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenViewModal,
-    onOpen: onOpenViewModal,
-    onClose: onCloseViewModal,
-  } = useDisclosure();
+  const { isOpen: isOpenUpdateModal, onOpen: onOpenUpdateModal, onClose: onCloseUpdateModal } = useDisclosure();
+  const { isOpen: isOpenViewModal, onOpen: onOpenViewModal, onClose: onCloseViewModal } = useDisclosure();
 
   const { deleteTask } = useTasksStore();
   const { getUserById } = useUsersStore();
@@ -52,56 +40,28 @@ const TaskCard = ({ task }: Props) => {
               handleContinue={handleDeleteTask}
             />
           )}
-          {isOpenUpdateModal && (
-            <AddTaskModal
-              currentTask={task}
-              open={isOpenUpdateModal}
-              onClose={onCloseUpdateModal}
-            />
-          )}
+          {isOpenUpdateModal && <AddTaskModal currentTask={task} open={isOpenUpdateModal} onClose={onCloseUpdateModal} />}
           <div className="flex items-center justify-between lg:flex-row sm:flex-col xs:flex-col mb-4 ">
-            <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white capitalize">
-              {task.title}
-            </h5>
+            <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white capitalize">{task.title}</h5>
             <p className="text-sm font-light ">
-              Assigned to:{" "}
-              <b>{getUserById(task.assignedTo)?.name ?? "User not found"}</b>
+              Assigned to: <b>{getUserById(task.assignedTo)?.name ?? "User not found"}</b>
             </p>
           </div>
-          <p className={`m-0 text-sm opacity-50 capitalize line-clamp-2`}>
-            {task.description}
-          </p>
+          <p className={`m-0 text-sm opacity-50 capitalize line-clamp-2`}>{task.description}</p>
           <div className="flex items-center justify-between   border-t border-gray-200 dark:border-gray-700 mt-4 pt-4">
             <p className="text-sm font-light">
               By: <b>{getUserById(task.createdBy)?.name ?? "User not found"}</b>
             </p>
             <div className="flex items-center justify-between">
-              <CardButton
-                variant="primary"
-                title="View"
-                handleClick={onOpenViewModal}
-              />
-              <CardButton
-                variant="warning"
-                title="Update"
-                handleClick={onOpenUpdateModal}
-              />
-              <CardButton
-                variant="danger"
-                title="Delete"
-                handleClick={onOpenDeleteAlert}
-              />
+              <CardButton variant="primary" title="View" handleClick={onOpenViewModal} />
+              <CardButton variant="warning" title="Update" handleClick={onOpenUpdateModal} />
+              <CardButton variant="danger" title="Delete" handleClick={onOpenDeleteAlert} />
             </div>
           </div>
         </div>
       ) : (
         <div className=" my-4 group rounded-lg border-2 border-dashed  px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 border-gray-50 dark:border-gray-800 hover:dark:bg-neutral-800/30">
-          {isOpenUpdateModal && (
-            <AddTaskModal
-              open={isOpenUpdateModal}
-              onClose={onCloseUpdateModal}
-            />
-          )}
+          {isOpenUpdateModal && <AddTaskModal open={isOpenUpdateModal} onClose={onCloseUpdateModal} />}
           <div className="mb-4 ">
             <div className="h-4 bg-gray-300  dark:bg-gray-800 w-full"></div>
           </div>
@@ -120,15 +80,9 @@ const TaskCard = ({ task }: Props) => {
                 fill="none"
                 viewBox="0 0 24 24"
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5 12h14m-7 7V5"
-                />
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14m-7 7V5" />
               </svg>
-                Add Task
+              Add Task
             </button>
           </div>
           <div className=" border-t border-gray-200 dark:border-gray-700 mt-4 pt-4">

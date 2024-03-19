@@ -6,7 +6,7 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "es2022",
+    "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,9 +20,21 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "baseUrl": "./",
-  
+    "baseUrl": "./"
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__tests__/useUsers.spec.js", "__tests__/MarsHeroSection.spec.js", "__tests__/CardButton.spec.js", "__tests__/CardButton.spec.js", "__tests__/useDisclosure.spec.js", "__tests__/useDisclosure.spec.js", "__tests__/useTaskes.spec.js", "__tests__/AddTaskModal.spec.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "__tests__/useUsers.spec.js",
+    "__tests__/MarsHeroSection.spec.js",
+    "__tests__/CardButton.spec.js",
+    "__tests__/CardButton.spec.js",
+    "__tests__/useDisclosure.spec.js",
+    "__tests__/useDisclosure.spec.js",
+    "__tests__/useTaskes.spec.js",
+    "__tests__/AddTaskModal.spec.js"
+  ]
 }

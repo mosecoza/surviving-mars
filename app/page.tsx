@@ -25,11 +25,7 @@ export default function Home() {
       <main className="p-4 md:ml-64 h-auto pt-20">
         <MarsHeroISection />
 
-        {tasks.length ? (
-          tasks.map((task) => <TaskCard key={task.id} task={task} />)
-        ) : (
-          <TaskCard />
-        )}
+        {tasks.length ? tasks.map((task) => <TaskCard key={task.id} task={task} />) : <TaskCard />}
       </main>
     </div>
   );

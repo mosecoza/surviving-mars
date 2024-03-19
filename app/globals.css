@@ -18,12 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -33,9 +28,9 @@ body {
 }
 
 .mission-title {
-  @apply text-3xl font-bold; 
+  @apply text-3xl font-bold;
 }
 
 .task-description {
-  @apply text-gray-700 text-base; 
+  @apply text-gray-700 text-base;
 }
