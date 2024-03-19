@@ -33,7 +33,7 @@ body {
 }
 
 .mission-title {
-  @apply text-mars-300 text-3xl font-bold; 
+  @apply text-3xl font-bold; 
 }
 
 .task-description {

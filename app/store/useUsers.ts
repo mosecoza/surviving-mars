@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { User } from '@/app/interfaces/User';
-import users from '@/app/constants/users.json';
+import mockUsers from '../constants/users.mock.json';
 
 interface UsersStore {
     users: User[];
@@ -12,7 +12,7 @@ interface UsersStore {
     setCurrentUser: (user: User | null) => void;
 }
 
-const data = users
+const data = mockUsers
 
 export const useUsersStore = create<UsersStore>(
     (set, get): UsersStore => ({

@@ -5,7 +5,7 @@ the name of the user who created the task, and the name of the person to whom th
 */
 
 export interface Task {
-    id: string; // Unique identifier for the task
+    id: string; 
     title: string;
     description: string;
     createdBy: number;

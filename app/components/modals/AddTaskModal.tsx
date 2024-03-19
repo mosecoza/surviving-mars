@@ -1,9 +1,8 @@
 import { Task } from "@/app/interfaces/Task";
-import { useTasksStore } from "@/app/store/useTasks";
-import { useUsersStore } from "@/app/store/users";
-import { generateTaskId } from "@/app/utils/generateTaskId";
+import { useTasksStore } from "../../store/useTasks";
+import { useUsersStore } from "../../store/useUsers";
+import { generateTaskId } from "../../utils/generateTaskId";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -13,6 +12,7 @@ interface Props {
 const AddTaskModal = ({ open = false, currentTask, onClose }: Props) => {
   const { users, currentUser } = useUsersStore();
   const { addTask, updateTask } = useTasksStore();
+  const [saveError, setSaveError] = useState(false);
   const [task, setTask] = useState<Task>(
     currentTask ?? {
       id: generateTaskId(),
@@ -35,16 +35,24 @@ const AddTaskModal = ({ open = false, currentTask, onClose }: Props) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!task.createdBy) throw "User not found please reload and try again";
-    currentTask ? updateTask(task) : addTask({ ...task, id: generateTaskId() });
-    onClose();
+    if (!task.createdBy) {
+      setSaveError(true);
+      return;
+    } else{
+
+      currentTask ? updateTask(task) : addTask({ ...task, id: generateTaskId() });
+      onClose();
+    }
   };
 
   return (
     <div
+      aria-roledescription="dialog"
+      role="dialog"
       id="defaultModal"
+      data-testid="addTaskModal"
       tabIndex={-1}
-      aria-hidden={open}
+      aria-hidden={!open}
       className={`${
         open ? "block" : "hidden"
       } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full`}
@@ -112,7 +120,6 @@ const AddTaskModal = ({ open = false, currentTask, onClose }: Props) => {
                   rows={4}
                   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Write task description here"
-                  defaultValue={""}
                   value={task?.description}
                   onChange={handleChange}
                 />
@@ -130,9 +137,6 @@ const AddTaskModal = ({ open = false, currentTask, onClose }: Props) => {
                   id="assignedTo"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 >
-                  <option selected defaultValue="0">
-                    Assign to user
-                  </option>
                   {users.map((user) => (
                     <option key={user.id} value={user.id}>
                       {user.name}
@@ -141,9 +145,19 @@ const AddTaskModal = ({ open = false, currentTask, onClose }: Props) => {
                 </select>
               </div>
             </div>
+            {saveError && (
+              <div
+                className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert"
+              >
+                We were not able to save this task, please reload the page and
+                try again in a few minutes
+              </div>
+            )}
+
             <button
               type="submit"
-              className="text-blue-500 dark:text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              className="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             >
               <svg
                 className="mr-1 -ml-1 w-6 h-6"

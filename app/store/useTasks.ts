@@ -1,12 +1,13 @@
 import { create, StateCreator } from 'zustand';
 import { createJSONStorage, persist, PersistOptions } from 'zustand/middleware';
-import { Task } from '@/app/interfaces/Task';
+import { Task } from '../interfaces/Task';
 
 interface TaskStore {
     tasks: Task[];
     addTask: (task: Task) => void;
     updateTask: (updatedTask: Task) => void;
     deleteTask: (taskId: string) => void;
+    deleteAllTasks: () => void;
 }
 
 type MyPersist = (
@@ -17,7 +18,7 @@ type MyPersist = (
 export const useTasksStore = create<TaskStore, []>(
     (persist as MyPersist)(
         (set, get): TaskStore => ({
-            tasks: [] as Task[], // Initial state with empty task list
+            tasks: [] as Task[], 
             addTask: (task: Task) => set((state) => ({ tasks: [...state.tasks, task] })),
             updateTask: (updatedTask: Task) =>
                 set((state) => ({
@@ -25,10 +26,12 @@ export const useTasksStore = create<TaskStore, []>(
                 })),
             deleteTask: (taskId: string) =>
                 set((state) => ({ tasks: state.tasks.filter((t) => t.id !== taskId) })),
+            deleteAllTasks: () =>
+                set((state) => ({ tasks: [] })),
         }),
         {
-            name: 'MarsTasks', // Key for storing tasks in localStorage
-            storage: createJSONStorage(() => localStorage) // Use the persisted storage instance
+            name: 'MarsTasks', 
+            storage: createJSONStorage(() => localStorage) 
         }
     )
 );
